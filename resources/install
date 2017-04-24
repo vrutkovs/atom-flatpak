@@ -5,7 +5,7 @@ set -e
 prefix=$(cat prefix)
 
 appdir="${prefix}/share/applications"
-olddesktop="${appdir}/atom.desktop"
+olddesktop="${appdir}/atom-beta.desktop"
 newdesktop="${appdir}/io.atom.Atom.desktop"
 sed -i -e 's/Icon=.*/Icon=io.atom.Atom/' "${olddesktop}"
 mv "${olddesktop}" "${newdesktop}"
