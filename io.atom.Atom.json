@@ -3,7 +3,7 @@
     "base": "io.atom.electron.BaseApp",
     "base-version": "lts",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "1.4",
+    "runtime-version": "1.6",
     "sdk": "org.freedesktop.Sdk",
     "command": "atom-beta",
     "branch": "beta",
@@ -19,6 +19,16 @@
         "--talk-name=org.freedesktop.Notifications"
     ],
     "modules": [
+        {
+            "name": "libsecret",
+            "config-opts": ["--disable-static", "--disable-manpages"],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://git.gnome.org/libsecret"
+                }
+            ]
+        },
         {
             "name": "xkbfile",
             "sources": [
@@ -61,8 +71,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/atom/atom/archive/v1.17.0-beta3.tar.gz",
-                    "sha256": "bfeeea59758286fe8a1c9e60c2b3b01a47b03032d24ac274e92b71d589c54a20"
+                    "url": "https://github.com/atom/atom/archive/v1.18.0-beta0.tar.gz",
+                    "sha256": "e26696c8e2f664485b99cf2597d6dee75837075fd927b34353e4c723fe6d9bde"
                 },
                 {
                     "type": "file",
