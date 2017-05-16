@@ -16,7 +16,8 @@
         "--filesystem=host",
         "--filesystem=/tmp",
         "--share=network",
-        "--talk-name=org.freedesktop.Notifications"
+        "--talk-name=org.freedesktop.Notifications",
+        "--talk-name=org.freedesktop.Secret"
     ],
     "modules": [
         {
