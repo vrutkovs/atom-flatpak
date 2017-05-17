@@ -12,3 +12,4 @@ do
 done
 
 pip2 install ansible --user
+git config --global credential.helper gnome-keyring

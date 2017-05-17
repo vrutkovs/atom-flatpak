@@ -17,7 +17,8 @@
         "--filesystem=/tmp",
         "--share=network",
         "--talk-name=org.freedesktop.Notifications",
-        "--talk-name=org.freedesktop.Secret"
+        "--talk-name=org.freedesktop.secrets",
+        "--filesystem=xdg-run/keyring"
     ],
     "modules": [
         {
