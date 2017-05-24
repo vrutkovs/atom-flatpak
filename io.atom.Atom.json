@@ -2,7 +2,7 @@
     "app-id": "io.atom.Atom",
     "base": "io.atom.electron.BaseApp",
     "base-version": "lts",
-    "runtime": "org.freedesktop.Platform",
+    "runtime": "org.freedesktop.Sdk",
     "runtime-version": "1.6",
     "sdk": "org.freedesktop.Sdk",
     "command": "atom-beta",
