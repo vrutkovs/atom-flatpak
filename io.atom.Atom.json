@@ -73,8 +73,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/atom/atom/archive/v1.18.0-beta3.tar.gz",
-                    "sha256": "9df88b83143ccb4048de9676698aec3e3092138bd406ca0f63a7b2fba98a7189"
+                    "url": "https://github.com/atom/atom/archive/v1.19.0-beta0.tar.gz",
+                    "sha256": "4965b5b2f618b8827e01ddd79691345de45e8715a02de87b5f7b2accdaa842e2"
                 },
                 {
                     "type": "file",
