@@ -12,4 +12,5 @@ do
 done
 
 pip2 install ansible --user
+pip2 install python-language-server --user
 git config --global credential.helper gnome-keyring
