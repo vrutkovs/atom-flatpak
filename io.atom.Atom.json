@@ -64,6 +64,42 @@
             ]
         },
         {
+          "name": "nodejs",
+          "cleanup": [
+            "/lib/node_modules/npm/docs",
+            "/lib/node_modules/npm/changelogs",
+            "/lib/node_modules/npm/html",
+            "/lib/node_modules/npm/man",
+            "/share"
+          ],
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://nodejs.org/dist/v6.11.4/node-v6.11.4.tar.gz",
+              "sha256": "94557aa1b9adaa71a424eb7efe8877d7e65bda6e496350c4bac5f64ec715bb1c"
+            }
+          ]
+        },
+        {
+          "name": "pyls",
+          "buildsystem": "simple",
+          "build-commands": [
+            "python3 setup.py install --prefix=/app"
+          ],
+          "build-options": {
+            "build-args": [
+              "--share=network"
+            ]
+          },
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://github.com/palantir/python-language-server/archive/0.10.0.tar.gz",
+              "sha256": "363f9cafad397dd0468b8920860bf0a244c14d698f13fff61d7524f3f6c404fd"
+            }
+          ]
+        },
+        {
             "name": "atom",
             "build-options": {
                 "build-args": [
@@ -74,7 +110,7 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/atom/atom/archive/v1.22.0-beta2.tar.gz",
-                    "sha256": "7cd6461c8a412fe96e6ca2ee040277cf91d420ed137a156405650038459d3177"
+                    "sha256": "21d65a028da755f263bd6567ad4bc6df806b87b098cf51ce59eba6d91c742248"
                 },
                 {
                     "type": "file",
@@ -89,37 +125,6 @@
                     "path": "atom/install"
                 }
             ]
-        },
-        {
-            "name": "resources",
-            "sources": [
-                {
-                    "type": "file",
-                    "path": "common/Makefile"
-                },
-                {
-                    "type": "file",
-                    "path": "common/configure"
-                },
-                {
-                    "type": "file",
-                    "path": "resources/install"
-                },
-                {
-                    "type": "file",
-                    "path": "resources/io.atom.Atom.appdata.xml"
-                }
-            ]
-        },
-        {
-          "name": "gvfs-trash",
-          "buildsystem": "simple",
-          "build-commands": [ "install -m755 gvfs-trash /app/bin/gvfs-trash" ],
-          "sources": [{
-            "type": "script",
-            "dest-filename": "gvfs-trash",
-            "commands": ["exec rm -r \"$@\""]
-          }]
         }
     ]
 }
