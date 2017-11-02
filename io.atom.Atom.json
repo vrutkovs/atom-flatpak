@@ -3,8 +3,7 @@
     "runtime": "org.freedesktop.Sdk",
     "runtime-version": "1.6",
     "base": "io.atom.electron.BaseApp",
-    "base-version": "lts",
-    "branch": "beta",
+    "base-version": "master",
     "sdk": "org.freedesktop.Sdk",
     "command": "atom-beta",
     "rename-desktop-file": "atom-beta.desktop",
@@ -131,8 +130,8 @@
         "sources": [
           {
             "type": "archive",
-            "url": "https://github.com/palantir/python-language-server/archive/0.10.0.tar.gz",
-            "sha256": "363f9cafad397dd0468b8920860bf0a244c14d698f13fff61d7524f3f6c404fd"
+            "url": "https://github.com/palantir/python-language-server/archive/0.11.1.tar.gz",
+            "sha256": "df27f7112327f671e7679ab8cd3ec29e718f7c80fc49c3d595520525f0186d0f"
           }
         ]
       }
