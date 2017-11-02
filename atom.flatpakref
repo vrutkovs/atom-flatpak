@@ -1,0 +1,8 @@
+[Flatpak Ref]
+Title=Unofficial Atom Beta builds
+Name=io.atom.Atom
+Branch=master
+Url=https://vrutkovs.github.io/atom-flatpak/repo
+IsRuntime=False
+RuntimeRepo=https://flathub.org/repo/flathub.flatpakrepo
+Comment=Atom editor beta
