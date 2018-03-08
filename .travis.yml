@@ -14,7 +14,7 @@ before_script:
   - git clone -b gh-pages https://github.com/$TRAVIS_REPO_SLUG export/ && cp -rf export/repo . || mkdir export
 
 script:
-  - docker run --privileged -v ${PWD}:/source -i vrutkovs/flatpak:test make -C source/
+  - docker run --privileged -v ${PWD}:/source -i vrutkovs/flatpak:latest make -C source/
 
 before_deploy:
   - rm -rf export && mkdir export
