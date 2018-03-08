@@ -22,6 +22,8 @@ before_deploy:
   - cp -rf atom.flatpakref export/
 
 deploy:
+  edge:
+    branch: v1.8.47
   provider: pages
   local_dir: export
   skip_cleanup: true
