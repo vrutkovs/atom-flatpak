@@ -183,8 +183,8 @@
         "sources": [
           {
             "type": "archive",
-            "url": "https://github.com/palantir/python-language-server/archive/0.11.1.tar.gz",
-            "sha256": "df27f7112327f671e7679ab8cd3ec29e718f7c80fc49c3d595520525f0186d0f"
+            "url": "https://github.com/palantir/python-language-server/archive/0.19.0.tar.gz",
+            "sha256": "5bd07b4c6224622517862dfe704d2015ccfa53fe091e13a40421687dc24a8acc"
           }
         ]
       }
