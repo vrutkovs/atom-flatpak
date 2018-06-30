@@ -6,9 +6,7 @@ prepare-repo:
 
 install-deps:
 	flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	flatpak --user install flathub org.freedesktop.Platform/x86_64/1.6 org.freedesktop.Sdk/x86_64/1.6
-	flatpak --user remote-add --no-gpg-verify --if-not-exists electron https://vrutkovs.github.io/io.atom.electron.BaseApp/electron.flatpakrepo
-	flatpak --user install electron io.atom.electron.BaseApp
+	flatpak --user install flathub org.freedesktop.Platform/x86_64/1.6 org.freedesktop.Sdk/x86_64/1.6 org.electronjs.Electron2.BaseApp/x86_64/stable
 
 build:
 	flatpak-builder --force-clean --ccache --require-changes --repo=repo \

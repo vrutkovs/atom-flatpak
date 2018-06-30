@@ -2,8 +2,8 @@
     "app-id": "io.atom.Atom",
     "runtime": "org.freedesktop.Sdk",
     "runtime-version": "1.6",
-    "base": "io.atom.electron.BaseApp",
-    "base-version": "master",
+    "base": "org.electronjs.Electron2.BaseApp",
+    "base-version": "stable",
     "sdk": "org.freedesktop.Sdk",
     "command": "atom-beta",
     "rename-desktop-file": "atom-beta.desktop",
@@ -27,7 +27,7 @@
         "buildsystem": "simple",
         "build-commands": [
           "mkdir -p /app/share/icons/hicolor",
-          "env XDG_DATA_DIRS=/app/share ./script/build --install=/app",
+          "env GIT_SSL_NO_VERIFY=1 XDG_DATA_DIRS=/app/share ./script/build --install=/app",
           "install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml",
           "install -Dm644 resources/app-icons/beta/png/1024.png /app/share/icons/hicolor/1024x1024/apps/io.atom.Atom.png",
           "install -Dm644 resources/app-icons/beta/png/512.png /app/share/icons/hicolor/512x512/apps/io.atom.Atom.png",
@@ -63,45 +63,6 @@
           }
         ],
         "modules": [
-          {
-              "name": "libsecret",
-              "config-opts": [
-                  "--disable-manpages",
-                  "--disable-gtk-doc",
-                  "--disable-static",
-                  "--disable-introspection"
-              ],
-              "cleanup": [
-                  "/bin",
-                  "/include",
-                  "/lib/pkgconfig",
-                  "/share/gtk-doc",
-                  "*.la"
-              ],
-              "sources": [
-                  {
-                      "type": "archive",
-                      "url": "http://ftp.gnome.org/pub/GNOME/sources/libsecret/0.18/libsecret-0.18.5.tar.xz",
-                      "sha256": "9ce7bd8dd5831f2786c935d82638ac428fa085057cc6780aba0e39375887ccb3"
-                  },
-                  {
-                      "type": "shell",
-                      "commands": ["autoreconf -f"]
-                  }
-              ]
-          },
-          {
-            "name": "xkbfile",
-            "cleanup": ["/include", "/lib/*.la", "/lib/pkgconfig"],
-            "config-opts": ["--disable-static"],
-            "sources": [
-              {
-                "type": "archive",
-                "url": "https://www.x.org/releases/individual/lib/libxkbfile-1.0.9.tar.bz2",
-                "sha256": "51817e0530961975d9513b773960b4edd275f7d5c72293d5a151ed4f42aeb16a"
-              }
-            ]
-          },
           {
               "name": "libcurl-gnutls",
               "config-opts": [
@@ -166,7 +127,57 @@
                 "./build.sh --system-sqlite --system-nspr --enable-libpkix -v -o",
                 "install -D ../dist/Release/lib/*.so /app/lib"
             ]
-        }
+        },
+        {
+            "name": "libsecret",
+            "config-opts": [
+                "--disable-manpages",
+                "--disable-gtk-doc",
+                "--disable-static",
+                "--disable-introspection"
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/pkgconfig",
+                "/share/gtk-doc",
+                "*.la"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnome.org/pub/GNOME/sources/libsecret/0.18/libsecret-0.18.5.tar.xz",
+                    "sha256": "9ce7bd8dd5831f2786c935d82638ac428fa085057cc6780aba0e39375887ccb3"
+                },
+                {
+                    "type": "shell",
+                    "commands": ["autoreconf -f"]
+                }
+            ]
+        },
+        {
+            "name": "nodejs",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://nodejs.org/dist/v8.9.0/node-v8.9.0.tar.xz",
+                    "path": "node.tar.xz",
+                    "sha256": "ae8258f89e127a76d4b4aff6fdb8dc395b7da0069cba054b913dfc36b3c91189"
+                }
+            ]
+        },
+        {
+            "name": "xkbfile",
+            "cleanup": ["/include", "/lib/*.la", "/lib/pkgconfig"],
+            "config-opts": ["--disable-static"],
+            "sources": [
+              {
+                "type": "archive",
+                "url": "https://www.x.org/releases/individual/lib/libxkbfile-1.0.9.tar.bz2",
+                "sha256": "51817e0530961975d9513b773960b4edd275f7d5c72293d5a151ed4f42aeb16a"
+              }
+            ]
+          }
         ]
       },
       {
