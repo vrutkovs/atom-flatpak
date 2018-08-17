@@ -63,71 +63,6 @@
           }
         ],
         "modules": [
-          {
-              "name": "libcurl-gnutls",
-              "config-opts": [
-                  "--disable-ldap",
-                  "--disable-manual",
-                  "--disable-ldaps",
-                  "--enable-ipv6",
-                  "--enable-threaded-resolver",
-                  "--with-gnutls=/usr",
-                  "--with-ca-bundle='/etc/ssl/certs/ca-certificates.crt'",
-                  "--without-gssapi",
-                  "--without-libidn",
-                  "--without-ssl"
-              ],
-              "cleanup": [
-                  "/bin"
-              ],
-              "post-install": [
-                  "mv /app/lib/libcurl{,-gnutls}.so.4.5.0",
-                  "rm /app/lib/libcurl.so*",
-                  "ln -s /app/lib/libcurl-gnutls.so.4.5.0 /app/lib/libcurl-gnutls.so.4"
-              ],
-              "sources": [
-                  {
-                      "type": "archive",
-                      "url": "https://curl.haxx.se/download/curl-7.59.0.tar.gz",
-                      "sha256": "099d9c32dc7b8958ca592597c9fabccdf4c08cfb7c114ff1afbbc4c6f13c9e9e"
-                  }
-              ]
-          },
-          {
-            "name": "gyp",
-            "buildsystem": "simple",
-            "cleanup": [ "*" ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://chromium.googlesource.com/external/gyp",
-                    "commit": "324dd166b7c0b39d513026fa52d6280ac6d56770"
-                }
-            ],
-            "build-commands": [
-                "python2 setup.py install --prefix=/app"
-            ]
-          },
-          {
-            "name": "nss",
-            "buildsystem": "simple",
-            "subdir": "nss",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_32_RTM/src/nss-3.32.tar.gz",
-                    "sha256": "35c6f381cc96bb25e4f924469f6ba3e57b3a16e0c2fb7e295a284a00d57ed335"
-                },
-                {
-                    "type": "patch",
-                    "path": "gyp-no-parallel.patch"
-                }
-            ],
-            "build-commands": [
-                "./build.sh --system-sqlite --system-nspr --enable-libpkix -v -o",
-                "install -D ../dist/Release/lib/*.so /app/lib"
-            ]
-        },
         {
             "name": "libsecret",
             "config-opts": [
@@ -156,17 +91,6 @@
             ]
         },
         {
-            "name": "nodejs",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://nodejs.org/dist/v8.9.0/node-v8.9.0.tar.xz",
-                    "path": "node.tar.xz",
-                    "sha256": "ae8258f89e127a76d4b4aff6fdb8dc395b7da0069cba054b913dfc36b3c91189"
-                }
-            ]
-        },
-        {
             "name": "xkbfile",
             "cleanup": ["/include", "/lib/*.la", "/lib/pkgconfig"],
             "config-opts": ["--disable-static"],
@@ -179,6 +103,25 @@
             ]
           }
         ]
+      },
+      {
+            "name": "node",
+            "build-options": {
+              "prefix": "/app/local"
+            },
+            "cleanup": [
+              "/local"
+            ],
+            "sources": [
+              {
+                "type": "archive",
+                "url": "https://nodejs.org/dist/v8.9.1/node-v8.9.1.tar.xz",
+                "sha512": "e1d93def34c1b91de90b807031e2f313661658cd045d44d290950190b10512770df05cb92e9657bab7ad6654d3359364193567cf693ddb2b3574d2a48e4ee256"
+              }
+            ],
+            "post-install": [
+              "python -m compileall /app/local/lib/node_modules/npm/node_modules/node-gyp"
+            ]
       },
       {
         "name": "pyls",
