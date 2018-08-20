@@ -1,0 +1,109 @@
+app-id: io.atom.Atom
+runtime: org.freedesktop.Sdk
+runtime-version: '1.6'
+base: org.electronjs.Electron2.BaseApp
+base-version: stable
+sdk: org.freedesktop.Sdk
+command: atom-beta
+rename-desktop-file: atom-beta.desktop
+separate-locales: false
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=network
+  - --device=dri
+  - --filesystem=host
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.secrets
+  - --talk-name=org.gtk.vfs
+  - --talk-name=org.gtk.vfs.*
+  - --env=ELECTRON_TRASH=gio
+  - --env=LD_LIBRARY_PATH=/app/lib
+modules:
+  - name: libsecret
+    config-opts:
+      - --disable-manpages
+      - --disable-gtk-doc
+      - --disable-static
+      - --disable-introspection
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /lib/gtk-2.0/include
+      - /share/gtk-doc
+      - "*.la"
+    sources:
+      - type: archive
+        url: http://ftp.gnome.org/pub/GNOME/sources/libsecret/0.18/libsecret-0.18.5.tar.xz
+        sha256: 9ce7bd8dd5831f2786c935d82638ac428fa085057cc6780aba0e39375887ccb3
+      - type: shell
+        commands:
+          - autoreconf -f
+
+  - name: xkbfile
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /lib/*.la
+    sources:
+      - type: archive
+        url: https://www.x.org/releases/individual/lib/libxkbfile-1.0.9.tar.bz2
+        sha256: 51817e0530961975d9513b773960b4edd275f7d5c72293d5a151ed4f42aeb16a
+
+  - name: node
+    build-options:
+      prefix: /app/local
+    cleanup:
+      - /local
+    sources:
+      - type: archive
+        url: https://nodejs.org/dist/v8.9.1/node-v8.9.1.tar.xz
+        sha256: e1d93def34c1b91de90b807031e2f313661658cd045d44d290950190b10512770df05cb92e9657bab7ad6654d3359364193567cf693ddb2b3574d2a48e4ee256
+    post-install:
+      - python -m compileall /app/local/lib/node_modules/npm/node_modules/node-gyp
+
+  - name: pyls
+    buildsystem: simple
+    build-options:
+      build-args:
+        - --share=network
+    build-commands:
+      - python3 setup.py install --prefix=/app
+    sources:
+      - type: archive
+        url: https://github.com/palantir/python-language-server/archive/0.19.0.tar.gz
+        sha256: 5bd07b4c6224622517862dfe704d2015ccfa53fe091e13a40421687dc24a8acc
+
+  - name: atom
+    buildsystem: simple
+    build-options:
+      append-path: /app/local/bin
+      build-args:
+        - --share=network
+    build-commands:
+      - mkdir -p /app/share/icons/hicolor
+      - env GIT_SSL_NO_VERIFY=1 XDG_DATA_DIRS=/app/share ./script/build --install=/app
+      - install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml
+      - install -Dm644 resources/app-icons/beta/png/1024.png /app/share/icons/hicolor/1024x1024/apps/io.atom.Atom.png
+      - install -Dm644 resources/app-icons/beta/png/512.png /app/share/icons/hicolor/512x512/apps/io.atom.Atom.png
+      - install -Dm644 resources/app-icons/beta/png/256.png /app/share/icons/hicolor/256x256/apps/io.atom.Atom.png
+      - install -Dm644 resources/app-icons/beta/png/128.png /app/share/icons/hicolor/128x128/apps/io.atom.Atom.png
+      - install -Dm644 resources/app-icons/beta/png/64.png /app/share/icons/hicolor/64x64/apps/io.atom.Atom.png
+      - install -Dm644 resources/app-icons/beta/png/32.png /app/share/icons/hicolor/32x32/apps/io.atom.Atom.png
+      - desktop-file-edit --set-icon=io.atom.Atom /app/share/applications/atom-beta.desktop
+      - desktop-file-edit --set-key=Exec --set-value='atom-beta %F' /app/share/applications/atom-beta.desktop
+      - install -m755 atom-beta /app/bin/atom-beta
+    sources:
+      - type: archive
+        url: https://github.com/atom/atom/archive/v1.30.0-beta2.tar.gz
+        sha256: e5d50b1e2e318e6dadab49c01121de69cb70bbc44fae1a23b747a30af62ede72
+      - type: file
+        path: io.atom.Atom.appdata.xml
+      - type: script
+        dest-filename: atom-beta
+        commands:
+          - exec env ATOM_HOME="$XDG_DATA_HOME" /app/share/atom-beta/atom "$@"

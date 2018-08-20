@@ -11,7 +11,7 @@ install-deps:
 build:
 	flatpak-builder --force-clean --ccache --require-changes --repo=repo \
 		--subject="Nightly build of Atom, `date`" \
-		${EXPORT_ARGS} app io.atom.Atom.json
+		${EXPORT_ARGS} app io.atom.Atom.yaml
 
 clean-cache:
 	rm -rf .flatpak-builder/build
