@@ -77,33 +77,33 @@ modules:
       - type: archive
         url: https://github.com/palantir/python-language-server/archive/0.19.0.tar.gz
         sha256: 5bd07b4c6224622517862dfe704d2015ccfa53fe091e13a40421687dc24a8acc
-
-  - name: atom
-    buildsystem: simple
-    build-options:
-      append-path: /app/local/bin
-      build-args:
-        - --share=network
-    build-commands:
-      - mkdir -p /app/share/icons/hicolor
-      - env GIT_SSL_NO_VERIFY=1 XDG_DATA_DIRS=/app/share ./script/build --install=/app
-      - install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml
-      - install -Dm644 resources/app-icons/beta/png/1024.png /app/share/icons/hicolor/1024x1024/apps/io.atom.Atom.png
-      - install -Dm644 resources/app-icons/beta/png/512.png /app/share/icons/hicolor/512x512/apps/io.atom.Atom.png
-      - install -Dm644 resources/app-icons/beta/png/256.png /app/share/icons/hicolor/256x256/apps/io.atom.Atom.png
-      - install -Dm644 resources/app-icons/beta/png/128.png /app/share/icons/hicolor/128x128/apps/io.atom.Atom.png
-      - install -Dm644 resources/app-icons/beta/png/64.png /app/share/icons/hicolor/64x64/apps/io.atom.Atom.png
-      - install -Dm644 resources/app-icons/beta/png/32.png /app/share/icons/hicolor/32x32/apps/io.atom.Atom.png
-      - desktop-file-edit --set-icon=io.atom.Atom /app/share/applications/atom-beta.desktop
-      - desktop-file-edit --set-key=Exec --set-value='atom-beta %F' /app/share/applications/atom-beta.desktop
-      - install -m755 atom-beta /app/bin/atom-beta
-    sources:
-      - type: archive
-        url: https://github.com/atom/atom/archive/v1.30.0-beta2.tar.gz
-        sha256: e5d50b1e2e318e6dadab49c01121de69cb70bbc44fae1a23b747a30af62ede72
-      - type: file
-        path: io.atom.Atom.appdata.xml
-      - type: script
-        dest-filename: atom-beta
-        commands:
-          - exec env ATOM_HOME="$XDG_DATA_HOME" /app/share/atom-beta/atom "$@"
+  # 
+  # - name: atom
+  #   buildsystem: simple
+  #   build-options:
+  #     append-path: /app/local/bin
+  #     build-args:
+  #       - --share=network
+  #   build-commands:
+  #     - mkdir -p /app/share/icons/hicolor
+  #     - env GIT_SSL_NO_VERIFY=1 XDG_DATA_DIRS=/app/share ./script/build --install=/app
+  #     - install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml
+  #     - install -Dm644 resources/app-icons/beta/png/1024.png /app/share/icons/hicolor/1024x1024/apps/io.atom.Atom.png
+  #     - install -Dm644 resources/app-icons/beta/png/512.png /app/share/icons/hicolor/512x512/apps/io.atom.Atom.png
+  #     - install -Dm644 resources/app-icons/beta/png/256.png /app/share/icons/hicolor/256x256/apps/io.atom.Atom.png
+  #     - install -Dm644 resources/app-icons/beta/png/128.png /app/share/icons/hicolor/128x128/apps/io.atom.Atom.png
+  #     - install -Dm644 resources/app-icons/beta/png/64.png /app/share/icons/hicolor/64x64/apps/io.atom.Atom.png
+  #     - install -Dm644 resources/app-icons/beta/png/32.png /app/share/icons/hicolor/32x32/apps/io.atom.Atom.png
+  #     - desktop-file-edit --set-icon=io.atom.Atom /app/share/applications/atom-beta.desktop
+  #     - desktop-file-edit --set-key=Exec --set-value='atom-beta %F' /app/share/applications/atom-beta.desktop
+  #     - install -m755 atom-beta /app/bin/atom-beta
+  #   sources:
+  #     - type: archive
+  #       url: https://github.com/atom/atom/archive/v1.30.0-beta2.tar.gz
+  #       sha256: e5d50b1e2e318e6dadab49c01121de69cb70bbc44fae1a23b747a30af62ede72
+  #     - type: file
+  #       path: io.atom.Atom.appdata.xml
+  #     - type: script
+  #       dest-filename: atom-beta
+  #       commands:
+  #         - exec env ATOM_HOME="$XDG_DATA_HOME" /app/share/atom-beta/atom "$@"
