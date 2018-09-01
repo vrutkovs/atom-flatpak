@@ -99,8 +99,8 @@ modules:
       - install -m755 atom-beta /app/bin/atom-beta
     sources:
       - type: archive
-        url: https://github.com/atom/atom/archive/v1.30.0-beta2.tar.gz
-        sha256: e5d50b1e2e318e6dadab49c01121de69cb70bbc44fae1a23b747a30af62ede72
+        url: https://github.com/atom/atom/archive/v1.31.0-beta0.tar.gz
+        sha256: 17216a9db18da9b0cd8dc9617edb0dbd77f057ba0f5a470ae9c1c8f8a2214c5b
       - type: file
         path: io.atom.Atom.appdata.xml
       - type: script
