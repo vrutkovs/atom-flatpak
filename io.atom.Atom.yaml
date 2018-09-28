@@ -43,16 +43,13 @@ modules:
           - autoreconf -f
 
   - name: node
-    build-options:
-      prefix: /app/local
-    cleanup:
-      - /local
+    buildsystem: simple
+    build-commands:
+      - cp -r * /app
     sources:
       - type: archive
-        url: https://nodejs.org/dist/v8.9.1/node-v8.9.1.tar.xz
-        sha256: e1d93def34c1b91de90b807031e2f313661658cd045d44d290950190b10512770df05cb92e9657bab7ad6654d3359364193567cf693ddb2b3574d2a48e4ee256
-    post-install:
-      - python -m compileall /app/local/lib/node_modules/npm/node_modules/node-gyp
+        url: https://nodejs.org/dist/v8.12.0/node-v8.12.0-linux-x64.tar.xz
+        sha256: 29a20479cd1e3a03396a4e74a1784ccdd1cf2f96928b56f6ffa4c8dae40c88f2
 
   - name: pyls
     buildsystem: simple
