@@ -6,7 +6,7 @@ prepare-repo:
 
 install-deps:
 	flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	flatpak --user install -y flathub org.freedesktop.Platform/x86_64/1.6 org.freedesktop.Sdk/x86_64/1.6 org.electronjs.Electron2.BaseApp/x86_64/stable
+	flatpak --user install -y flathub org.freedesktop.Platform/x86_64/18.08 org.freedesktop.Sdk/x86_64/18.08 org.electronjs.Electron2.BaseApp/x86_64/stable
 
 build:
 	flatpak-builder --force-clean --ccache --require-changes --repo=repo \
