@@ -48,8 +48,8 @@ modules:
       - cp -r * /app
     sources:
       - type: archive
-        url: https://nodejs.org/dist/v10.13.0/node-v10.13.0-linux-x64.tar.xz
-        sha256: 0dc6dba645550b66f8f00541a428c29da7c3cde32fb7eda2eb626a9db3bbf08d
+        url: https://nodejs.org/dist/v8.9.3/node-v8.9.3-linux-x64.tar.xz
+        sha256: 86f3aa593315f0503d069e3f4805019583ab8d86c0244a83c795d1942e3f99b7
 
   - name: pyls
     buildsystem: simple
