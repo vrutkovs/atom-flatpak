@@ -41,16 +41,6 @@ modules:
       - type: shell
         commands:
           - autoreconf -f
-
-  - name: node
-    buildsystem: simple
-    build-commands:
-      - cp -r * /app
-    sources:
-      - type: archive
-        url: https://nodejs.org/dist/v8.9.3/node-v8.9.3-linux-x64.tar.xz
-        sha256: 86f3aa593315f0503d069e3f4805019583ab8d86c0244a83c795d1942e3f99b7
-
   - name: pyls
     buildsystem: simple
     build-options:
@@ -62,7 +52,6 @@ modules:
       - type: archive
         url: https://github.com/palantir/python-language-server/archive/0.21.2.tar.gz
         sha256: 467e4f5e67b1068fe6af6015a13dedb73863968fce4671f36ba02ae18499ca35
-
   - name: atom
     buildsystem: simple
     build-options:
@@ -70,8 +59,14 @@ modules:
       build-args:
         - --share=network
     build-commands:
-      - mkdir -p /app/share/icons/hicolor
-      - env GIT_SSL_NO_VERIFY=1 XDG_DATA_DIRS=/app/share ./script/build --install=/app
+      - ar x atom-amd64.deb
+      - tar -xf data.tar.xz
+      - cp -r usr/* /app
+      - mv /app/bin/atom-beta /app/bin/atom-real
+      - install atom-beta /app/bin
+      - mv /app/bin/apm-beta /app/bin/apm-real
+      - install apm-beta /app/bin
+      - mkdir -p /app/share/icons/hicolor/
       - install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml
       - install -Dm644 resources/app-icons/beta/png/1024.png /app/share/icons/hicolor/1024x1024/apps/io.atom.Atom.png
       - install -Dm644 resources/app-icons/beta/png/512.png /app/share/icons/hicolor/512x512/apps/io.atom.Atom.png
@@ -81,14 +76,30 @@ modules:
       - install -Dm644 resources/app-icons/beta/png/32.png /app/share/icons/hicolor/32x32/apps/io.atom.Atom.png
       - desktop-file-edit --set-icon=io.atom.Atom /app/share/applications/atom-beta.desktop
       - desktop-file-edit --set-key=Exec --set-value='atom-beta %F' /app/share/applications/atom-beta.desktop
-      - install -m755 atom-beta /app/bin/atom-beta
+      - install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml",
+      - install pip3 /app/bin"
     sources:
       - type: archive
-        url: https://github.com/atom/atom/archive/v1.33.0-beta3.tar.gz
-        sha256: ebb4f2daa90fa5a1e897c3a785677d58f90607df805a6d8b1ab1bf182760bc78
+        url: https://github.com/atom/atom/releases/download/v1.34.0-beta0/atom-amd64.deb
+        sha256: dcc5b1c2112cfe9f0767808c0accb67368a39d36824690313444ea523ec9d9f6
       - type: file
         path: io.atom.Atom.appdata.xml
       - type: script
         dest-filename: atom-beta
         commands:
-          - exec env ATOM_HOME="$XDG_DATA_HOME" /app/share/atom-beta/atom "$@"
+          - export ATOM_HOME="$XDG_DATA_HOME"
+          - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+          - export PATH="$XDG_DATA_HOME/python/bin:$PATH"
+          - exec /app/bin/atom-real "$@"
+      - type: script
+        dest-filename: apm-beta
+        commands:
+          - export ATOM_HOME="$XDG_DATA_HOME"
+          - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+          - export PATH="$XDG_DATA_HOME/python/bin:$PATH"
+          - exec /app/bin/apm-real "$@"
+      - type: script
+        dest-filename: pip3
+        commands:
+          - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+          - exec /usr/bin/pip3 "$@"
