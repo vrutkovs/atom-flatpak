@@ -85,6 +85,7 @@ modules:
           - export ATOM_HOME="$XDG_DATA_HOME"
           - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
           - export PATH="$XDG_DATA_HOME/python/bin:$PATH"
+          - export ATOM_PATH=/app/share/atom-beta/atom
           - exec /app/bin/atom-real "$@"
       - type: script
         dest-filename: apm-beta
