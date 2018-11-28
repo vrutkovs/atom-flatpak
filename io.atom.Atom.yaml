@@ -50,8 +50,8 @@ modules:
       - python3 setup.py install --prefix=/app
     sources:
       - type: archive
-        url: https://github.com/palantir/python-language-server/archive/0.21.2.tar.gz
-        sha256: 467e4f5e67b1068fe6af6015a13dedb73863968fce4671f36ba02ae18499ca35
+        url: https://github.com/palantir/python-language-server/archive/0.21.3.tar.gz
+        sha256: 07fe8720766cb2a2d79d1a2fe5775f3127aed90289d9acd3b09fc2117fbca21b
   - name: atom
     buildsystem: simple
     build-options:
