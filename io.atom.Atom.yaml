@@ -65,8 +65,8 @@ modules:
       - cp -r usr/* /app
       - install atom-beta-wrapper /app/bin
       - install apm-beta-wrapper /app/bin
-      - mkdir -p /app/share/icons/hicolor/512x512/apps
-      - mv /app/share/pixmaps/atom-beta.png /app/share/icons/hicolor/512x512/apps
+      - mkdir -p /app/share/icons/hicolor/scalable/apps
+      - cp atom-beta.svg /app/share/icons/hicolor/scalable/apps
       - desktop-file-edit --set-icon=io.atom.Atom /app/share/applications/atom-beta.desktop
       - desktop-file-edit --set-key=Exec --set-value='atom-beta-wrapper %F' /app/share/applications/atom-beta.desktop
       - install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml
@@ -77,6 +77,8 @@ modules:
         sha256: 5a856dd6b8ff94e019aea0ff0fa45f953ec28036a5f7d9a833d62eb522519477
       - type: file
         path: io.atom.Atom.appdata.xml
+      - type: file
+        path: atom-beta.svg
       - type: script
         dest-filename: atom-beta-wrapper
         commands:
