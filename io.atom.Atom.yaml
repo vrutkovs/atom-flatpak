@@ -68,7 +68,7 @@ modules:
       - mkdir -p /app/share/icons/hicolor/scalable/apps
       - cp atom-beta.svg /app/share/icons/hicolor/scalable/apps
       - desktop-file-edit --set-icon=io.atom.Atom /app/share/applications/atom-beta.desktop
-      - desktop-file-edit --set-key=Exec --set-value='atom-beta-wrapper %F' /app/share/applications/atom-beta.desktop
+      - desktop-file-edit --set-key=Exec --set-value='atom-beta %F' /app/share/applications/atom-beta.desktop
       - install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml
       - install pip3 /app/bin
     sources:
