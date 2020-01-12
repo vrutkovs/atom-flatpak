@@ -4,7 +4,7 @@ runtime-version: '19.08'
 base: org.electronjs.Electron2.BaseApp
 base-version: '19.08'
 sdk: org.freedesktop.Sdk
-command: atom-beta-wrapper
+command: atom-beta
 rename-desktop-file: atom-beta.desktop
 rename-icon: atom-beta
 separate-locales: false
@@ -63,8 +63,6 @@ modules:
       - ar x atom-amd64.deb
       - tar -xf data.tar.xz
       - cp -r usr/* /app
-      - install atom-beta-wrapper /app/bin
-      - install apm-beta-wrapper /app/bin
       - mkdir -p /app/share/icons/hicolor/scalable/apps
       - cp atom-beta.svg /app/share/icons/hicolor/scalable/apps
       - desktop-file-edit --set-icon=io.atom.Atom /app/share/applications/atom-beta.desktop
@@ -79,20 +77,6 @@ modules:
         path: io.atom.Atom.appdata.xml
       - type: file
         path: atom-beta.svg
-      - type: script
-        dest-filename: atom-beta-wrapper
-        commands:
-          - export ATOM_HOME="$XDG_DATA_HOME"
-          - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
-          - export PATH="$XDG_DATA_HOME/python/bin:$PATH"
-          - exec /app/bin/atom-beta "$@"
-      - type: script
-        dest-filename: apm-beta-wrapper
-        commands:
-          - export ATOM_HOME="$XDG_DATA_HOME"
-          - export PYTHONUSERBASE="$XDG_DATA_HOME/python"
-          - export PATH="$XDG_DATA_HOME/python/bin:$PATH"
-          - exec /app/bin/apm-beta "$@"
       - type: script
         dest-filename: pip3
         commands:
