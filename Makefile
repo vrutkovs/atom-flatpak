@@ -26,4 +26,4 @@ update-repo:
 copy-to-export:
 	rm -rf export && mkdir export
 	cp -rf repo/ export/
-	cp -rf bat.flatpakref export/
+	cp -rf atom.flatpakref export/
