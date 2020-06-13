@@ -70,6 +70,8 @@ modules:
       - desktop-file-edit --set-key=Exec --set-value='atom-beta %F' /app/share/applications/atom-beta.desktop
       - install -Dm644 io.atom.Atom.appdata.xml /app/share/appdata/io.atom.Atom.appdata.xml
       - install pip3 /app/bin
+      - rm -rf /app/share/atom-beta/chrome-sandbox
+      - sed -i 's;nohup "$ATOM_PATH";nohup "$ATOM_PATH" --no-sandbox;' /app/bin/atom-beta
     sources:
       - type: file
         url: https://github.com/atom/atom/releases/download/v1.49.0-beta0/atom-amd64.deb
