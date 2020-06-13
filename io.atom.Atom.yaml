@@ -72,8 +72,8 @@ modules:
       - install pip3 /app/bin
     sources:
       - type: file
-        url: https://github.com/atom/atom/releases/download/v1.45.0-beta0/atom-amd64.deb
-        sha256: ac4d8ac44c3001638014bcc67daff597ad5606ad77dda4230ba2776a248b08da
+        url: https://github.com/atom/atom/releases/download/v1.49.0-beta0/atom-amd64.deb
+        sha256: 63f8b06469c3a5ddf13a4ef2ac53176fce8b5949963c632f1fb2417d14a926bb
       - type: file
         path: io.atom.Atom.appdata.xml
       - type: file
