@@ -74,8 +74,8 @@ modules:
       - sed -i 's;nohup "$ATOM_PATH";nohup "$ATOM_PATH" --no-sandbox;' /app/bin/atom-beta
     sources:
       - type: file
-        url: https://github.com/atom/atom/releases/download/v1.49.0-beta0/atom-amd64.deb
-        sha256: 63f8b06469c3a5ddf13a4ef2ac53176fce8b5949963c632f1fb2417d14a926bb
+        url: https://github.com/atom/atom/releases/download/v1.51.0-beta0/atom-amd64.deb
+        sha256: 730ed4b2467c9aa20449d215ae265cfc3d451d00724ed323614baf8427d7c648
       - type: file
         path: io.atom.Atom.appdata.xml
       - type: file
