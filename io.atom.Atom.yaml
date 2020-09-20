@@ -22,6 +22,13 @@ finish-args:
   - --talk-name=org.gtk.vfs.*
   - --env=ELECTRON_TRASH=gio
   - --env=LD_LIBRARY_PATH=/app/lib
+add-extensions:
+  com.visualstudio.code.tool:
+    directory: tools
+    subdirectories: true
+    version: "20.08"
+    add-ld-path: lib
+    no-autodownload: true
 modules:
   - name: libsecret
     config-opts:
@@ -72,6 +79,7 @@ modules:
       - install pip3 /app/bin
       - rm -rf /app/share/atom-beta/chrome-sandbox
       - sed -i 's;nohup "$ATOM_PATH";nohup "$ATOM_PATH" --no-sandbox;' /app/bin/atom-beta
+      - mkdir /app/tools
     sources:
       - type: file
         url: https://github.com/atom/atom/releases/download/v1.52.0-beta0/atom-amd64.deb
