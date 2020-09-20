@@ -60,7 +60,7 @@ modules:
     sources:
       - type: archive
         url: https://github.com/palantir/python-language-server/archive/0.35.0.tar.gz
-        sha256: 1df409d67d574934a0c35a632b39e00ca188741d056d68c7a2bd05f31f714dcd
+        sha256: 2517299e58897d2e4347a8dcb933d89ddc46f3ff6a83dc3aa232d30a9898fa64
   - name: atom
     buildsystem: simple
     build-options:
