@@ -82,8 +82,8 @@ modules:
       - mkdir /app/tools
     sources:
       - type: file
-        url: https://github.com/atom/atom/releases/download/v1.55.0-beta0/atom-amd64.deb
-        sha256: 3c80a44ede7870f9032559d7053b521d44156e6a2c3a965f540883e40dff9fe4
+        url: https://github.com/atom/atom/releases/download/v1.57.0-beta0/atom-amd64.deb
+        sha256: d4e3e3c131878235b1cbab4733783c706d3a7639530421a209faa54b85255d29
       - type: file
         path: io.atom.Atom.appdata.xml
       - type: file
